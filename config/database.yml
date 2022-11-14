@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  url: "postgresql://postgres:postgres@localhost:5432/vikali"
+
+test:
+  <<: *default
+  url: "postgresql://postgres:postgres@localhost:5432/test_vikali"
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
